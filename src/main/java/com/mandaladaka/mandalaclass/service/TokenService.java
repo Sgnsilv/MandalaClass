@@ -33,4 +33,17 @@ public class TokenService {
     private Instant dataExpiracao() {
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
     }
+
+    public String getSubject(String tokenJWT) {
+        try {
+            var algoritmo = Algorithm.HMAC256(secret);
+            return JWT.require(algoritmo)
+                    .withIssuer("MandalaClass")
+                    .build()
+                    .verify(tokenJWT)
+                    .getSubject();
+        } catch (Exception exception) {
+            throw new RuntimeException("Token inválido ou expirado", exception);
+        }
+    }
 }
