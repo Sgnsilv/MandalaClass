@@ -20,4 +20,8 @@ public class Professor {
 
     @Column(nullable = false)
     private String senha;
+
+    @ManyToMany(mappedBy = "professores")
+    @com.fasterxml.jackson.annotation.JsonIgnore
+    private java.util.List<Turma> turmas = new java.util.ArrayList<>();
 }
