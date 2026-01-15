@@ -1,58 +1,61 @@
-## 📚 Documentação da API
+
+##Documentação da API
 
 ### 🔐 Autenticação
 
-Para acessar as rotas protegidas (como criar turmas), você precisa primeiro obter um **Token JWT**.
-
-#### 1. Login (Gerar Token)
+**1. Login (Gerar Token)**
 * **POST** `/auth/login`
-* **Body:**
-    ```json
-    {
-      "email": "sara@teste.com",
-      "senha": "123"
-    }
-    ```
-* **Resposta:** Retorna uma `String` com o Token JWT.
+* **Body:** `{"email": "...", "senha": "..."}`
+* **Resposta:** Retorna o Token JWT (Bearer).
+* *Obs: Necessário para acessar as rotas de escrita abaixo.*
 
 ---
 
 ### 👩‍🏫 Professores
 
-#### 2. Cadastrar Professor
+**2. Cadastrar Professor**
 * **POST** `/professores`
-* **Acesso:** Público (Por enquanto)
-* **Body:**
-    ```json
-    {
-      "nome": "Sara Silva",
-      "email": "sara@teste.com",
-      "senha": "123"
-    }
-    ```
+* **Body:** `{"nome": "...", "email": "...", "senha": "..."}`
 
-#### 3. Listar Professores
+**3. Listar Professores**
 * **GET** `/professores`
-* **Header:** `Authorization: Bearer <SEU_TOKEN>`
 
 ---
 
-### 🏫 Turmas
+### 🎓 Alunos (Novo!)
 
-#### 4. Criar Turma
-* **POST** `/turmas`
-* **Header:** `Authorization: Bearer <SEU_TOKEN>`
+**4. Cadastrar Aluno**
+* **POST** `/alunos`
+* **Header:** `Authorization: Bearer <TOKEN>`
 * **Body:**
     ```json
     {
-      "nome": "Engenharia de Software",
-      "ano": "2026.1"
+      "nome": "Joãozinho",
+      "matricula": "2026001",
+      "dataNascimento": "2010-05-20"
     }
     ```
 
-#### 5. Matricular Professor na Turma
+**5. Listar Alunos**
+* **GET** `/alunos`
+* **Header:** `Authorization: Bearer <TOKEN>`
+
+---
+
+### 🏫 Turmas & Matrículas
+
+**6. Criar Turma**
+* **POST** `/turmas`
+* **Header:** `Authorization: Bearer <TOKEN>`
+* **Body:** `{"nome": "Engenharia de Software", "ano": "2026.1"}`
+
+**7. Vincular Professor na Turma**
 * **POST** `/turmas/{id_turma}/professores/{id_professor}`
-* **Header:** `Authorization: Bearer <SEU_TOKEN>`
-* **Descrição:** Vincula um professor existente a uma turma existente.
+* **Header:** `Authorization: Bearer <TOKEN>`
+
+**8. Matricular Aluno na Turma (Novo!)**
+* **POST** `/turmas/{id_turma}/matriculas/{id_aluno}`
+* **Header:** `Authorization: Bearer <TOKEN>`
+* **Descrição:** Cria o vínculo oficial entre o aluno e a turma.
 
 ---

@@ -32,7 +32,10 @@ O **MandalaClass** é uma API RESTful desenvolvida para gerenciar o ecossistema 
 ---
 
 ## 🚧 Próximos Passos (Roadmap)
-- [ ] Implementar criptografia de senha (BCrypt).
-- [ ] Criar CRUD de Alunos.
-- [ ] Migrar banco de dados para PostgreSQL (Docker).
-- [ ] Adicionar testes unitários com JUnit.
+- [x] CRUD de Professores.
+- [x] Autenticação JWT e Segurança.
+- [x] CRUD de Turmas e Vínculo com Professores.
+- [x] CRUD de Alunos e Matrículas.
+- [ ] **Configuração de Docker (PostgreSQL).**
+- [ ] Sistema de Lançamento de Notas.
+- [ ] Tratamento de Exceções Global (ControllerAdvice).
