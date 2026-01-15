@@ -15,6 +15,7 @@ public class TurmaService {
 
     private final TurmaRepository turmaRepository;
     private final ProfessorRepository professorRepository;
+    private final com.mandaladaka.mandalaclass.repository.AlunoRepository alunoRepository;
 
     public Turma criarTurma(Turma turma) {
         return turmaRepository.save(turma);
@@ -35,4 +36,15 @@ public class TurmaService {
         
         return turmaRepository.save(turma);
     }
+    public Turma matricularAluno(Long turmaId, Long alunoId) {
+        Turma turma = turmaRepository.findById(turmaId)
+                .orElseThrow(() -> new RuntimeException("Turma não encontrada"));
+        
+        com.mandaladaka.mandalaclass.model.Aluno aluno = alunoRepository.findById(alunoId)
+                .orElseThrow(() -> new RuntimeException("Aluno não encontrado"));
+
+        turma.getAlunos().add(aluno);
+        return turmaRepository.save(turma);
+    }
+
 }

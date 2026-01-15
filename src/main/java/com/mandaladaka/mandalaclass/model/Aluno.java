@@ -21,4 +21,8 @@ public class Aluno {
 
     @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
+    
+    @ManyToMany(mappedBy = "alunos")
+    @com.fasterxml.jackson.annotation.JsonIgnore
+    private java.util.List<Turma> turmas = new java.util.ArrayList<>();
 }
