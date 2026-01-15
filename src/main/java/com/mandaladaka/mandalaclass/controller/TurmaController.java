@@ -32,4 +32,12 @@ public class TurmaController {
         
         return ResponseEntity.ok(service.adicionarProfessor(turmaId, professorId));
     }
+
+    @PostMapping("/{turmaId}/matriculas/{alunoId}")
+    public ResponseEntity<Turma> matricular(
+            @PathVariable Long turmaId, 
+            @PathVariable Long alunoId) {
+        
+        return ResponseEntity.ok(service.matricularAluno(turmaId, alunoId));
+    }
 }

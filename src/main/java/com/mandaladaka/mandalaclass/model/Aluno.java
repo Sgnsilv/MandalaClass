@@ -2,12 +2,13 @@ package com.mandaladaka.mandalaclass.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import java.time.LocalDate;
 
 @Data
 @Entity
-@Table(name = "professores")
+@Table(name = "alunos")
+public class Aluno {
 
-public class Professor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,13 +17,12 @@ public class Professor {
     private String nome;
 
     @Column(nullable = false, unique = true)
-    private String email;
+    private String matricula;
 
-    @Column(nullable = false)
-    @com.fasterxml.jackson.annotation.JsonProperty(access = com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY)
-    private String senha;
+    @Column(name = "data_nascimento")
+    private LocalDate dataNascimento;
     
-    @ManyToMany(mappedBy = "professores")
+    @ManyToMany(mappedBy = "alunos")
     @com.fasterxml.jackson.annotation.JsonIgnore
     private java.util.List<Turma> turmas = new java.util.ArrayList<>();
 }

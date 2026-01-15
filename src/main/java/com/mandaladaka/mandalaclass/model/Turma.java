@@ -22,6 +22,14 @@ public class Turma {
 
     @ManyToMany
     @JoinTable(
+            name = "turma_alunos",
+            joinColumns = @JoinColumn(name = "turma_id"),
+            inverseJoinColumns = @JoinColumn(name = "aluno_id")
+    )
+    private List<Aluno> alunos = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(
             name = "turma_professores",
             joinColumns = @JoinColumn(name = "turma_id"),
             inverseJoinColumns = @JoinColumn(name = "professor_id")
